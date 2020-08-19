@@ -19,22 +19,22 @@ public class ManagerPages {
     /**
      * Стартовая страничка
      */
-    StartPage startPage;
+    private StartPage startPage;
 
     /**
      * Страничка страхование путественников
      */
-    StrahovaniePage strahovaniePage;
+    private StrahovaniePage strahovaniePage;
 
     /**
      * Страничка выбора полиса или тарифа
      */
-    TarifPage tarifPage;
+    private TarifPage tarifPage;
 
     /**
      * Страничка оформления полиса страхования
      */
-    RegistrationFormPage registrationFormPage;
+    private RegistrationFormPage registrationFormPage;
 
     /**
      * Конструктор специально запривейтили (синглтон)
