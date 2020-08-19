@@ -90,7 +90,7 @@ public class BasePage {
      * @param field - веб-елемент поле ввода
      * @param value - значение вводимое в поле
      */
-    public void fillInputField(WebElement field, String value) {
+    protected void fillInputField(WebElement field, String value) {
         scrollToElementJs(field);
         elementToBeClickable(field).click();
         field.sendKeys(value);
@@ -102,7 +102,7 @@ public class BasePage {
      * @param field - веб-елемент поле с датой
      * @param value - значение вводимое в поле с датой
      */
-    public void fillDateField(WebElement field, String value) {
+    protected void fillDateField(WebElement field, String value) {
         scrollToElementJs(field);
         field.sendKeys(value);
     }

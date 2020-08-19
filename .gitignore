@@ -6,3 +6,4 @@ target
 *.iml
 *.war
 *.jar
+*.log

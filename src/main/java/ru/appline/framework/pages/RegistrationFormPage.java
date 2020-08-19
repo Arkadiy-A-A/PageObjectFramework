@@ -1,6 +1,5 @@
 package ru.appline.framework.pages;
 
-import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,52 +12,52 @@ import org.openqa.selenium.support.FindBy;
 public class RegistrationFormPage extends BasePage {
 
     @FindBy(id = "surname_vzr_ins_0")
-    WebElement insSurName;
+    private WebElement insSurName;
 
     @FindBy(id = "name_vzr_ins_0")
-    WebElement insName;
+    private WebElement insName;
 
     @FindBy(id = "birthDate_vzr_ins_0")
-    WebElement insDateOfBirth;
+    private WebElement insDateOfBirth;
 
     @FindBy(id = "person_lastName")
-    WebElement personLastName;
+    private WebElement personLastName;
 
     @FindBy(id = "person_firstName")
-    WebElement personFirstName;
+    private WebElement personFirstName;
 
     @FindBy(id = "person_middleName")
-    WebElement personMiddleName;
+    private WebElement personMiddleName;
 
     @FindBy(id = "person_birthDate")
-    WebElement personBirthDate;
+    private WebElement personBirthDate;
 
     @FindBy(id = "passportSeries")
-    WebElement passportSeries;
+    private WebElement passportSeries;
 
     @FindBy(id = "passportNumber")
-    WebElement passportNumber;
+    private WebElement passportNumber;
 
     @FindBy(id = "documentDate")
-    WebElement passportDocumentDate;
+    private WebElement passportDocumentDate;
 
     @FindBy(id = "documentIssue")
-    WebElement passportDocumentIssue;
+    private WebElement passportDocumentIssue;
 
     @FindBy(id = "phone")
-    WebElement phone;
+    private WebElement phone;
 
     @FindBy(id = "email")
-    WebElement email;
+    private WebElement email;
 
     @FindBy(id = "repeatEmail")
-    WebElement repeatEmail;
+    private WebElement repeatEmail;
 
     @FindBy(xpath = "//button[contains(.,'Продолжить')]")
-    WebElement btnContinue;
+    private WebElement btnContinue;
 
     @FindBy(xpath = "//div[@class='alert-form alert-form-error']")
-    WebElement errorMessageAlert;
+    private WebElement errorMessageAlert;
 
     /**
      * Метод заполнения полей
@@ -67,7 +66,6 @@ public class RegistrationFormPage extends BasePage {
      * @param value     - значение вводимое в поле
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Заполняем поле '{nameField}' значение '{value}'")
     public RegistrationFormPage fillField(String nameField, String value) {
         WebElement element = null;
         switch (nameField) {
@@ -132,7 +130,6 @@ public class RegistrationFormPage extends BasePage {
      * @param errMassage - ошибка проверяемая которая отображается возле этого поля
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Проверка что у поле '{nameField}' присутствует ошибка с текстом '{errMassage}'")
     public RegistrationFormPage checkErrorMessageAtField(String nameField, String errMassage) {
         WebElement element = null;
         switch (nameField) {
@@ -161,7 +158,6 @@ public class RegistrationFormPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Кликаем по кнопке 'Продолжить'")
     public RegistrationFormPage clickBtnContinue() {
         elementToBeClickable(btnContinue).click();
         return this;
@@ -172,7 +168,6 @@ public class RegistrationFormPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Проверяем что на странице появилась ошибка с текстом '{errMessage}'")
     public RegistrationFormPage checkErrorMessageAlert(String errMessage) {
         Assert.assertEquals("Проверка ошибки у alert на странице " +
                         "'Оформления страхования путешественников' было не пройдено",

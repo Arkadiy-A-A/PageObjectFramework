@@ -16,7 +16,7 @@ public class InitManager {
      * Менеджер пропертей
      * @see TestPropManager#getTestPropManager()
      */
-    public static TestPropManager props = TestPropManager.getTestPropManager();
+    private static TestPropManager props = TestPropManager.getTestPropManager();
 
     /**
      * Инициализация фреймворка и запуск браузера со страницей приложения
@@ -28,7 +28,6 @@ public class InitManager {
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
         getDriver().manage().timeouts().pageLoadTimeout(Integer.parseInt(props.getProperty(PAGE_LOAD_TIMEOUT)), TimeUnit.SECONDS);
-        getDriver().get(props.getProperty(APP_URL));
     }
 
     /**

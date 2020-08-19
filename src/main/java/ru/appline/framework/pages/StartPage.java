@@ -1,6 +1,5 @@
 package ru.appline.framework.pages;
 
-import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +14,10 @@ import java.util.List;
 public class StartPage extends BasePage {
 
     @FindBy(xpath = "//button[@class='lg-menu__link']")
-    List<WebElement> menuBaseList;
+    private List<WebElement> menuBaseList;
 
     @FindBy(xpath = "//a[@class='lg-menu__sub-link' and text()]")
-    List<WebElement> menuSubList;
+    private List<WebElement> menuSubList;
 
     /**
      * Функция наведения мыши на любую менюшку
@@ -26,7 +25,6 @@ public class StartPage extends BasePage {
      * @param nameBaseMenu - наименование меню
      * @return StartPage - т.е. остаемся на этой странице
      */
-    @Step("Переход в главное меню {nameBaseMenu}")
     public StartPage selectBaseMenu(String nameBaseMenu) {
         for (WebElement menuItem : menuBaseList) {
             if (menuItem.getText().equalsIgnoreCase(nameBaseMenu)) {
@@ -44,7 +42,6 @@ public class StartPage extends BasePage {
      * @param nameSubMenu - наименование подменю
      * @return StrahovaniePage - т.е. переходим на страницу {@link ru.appline.framework.pages.StrahovaniePage}
      */
-    @Step("Выбираем подменю {nameSubMenu}")
     public StrahovaniePage selectSubMenu(String nameSubMenu) {
         for (WebElement menuItem : menuSubList) {
             if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
