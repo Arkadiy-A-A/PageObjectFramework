@@ -2,8 +2,8 @@ package ru.appline.framework.managers;
 
 import ru.appline.framework.pages.RegistrationFormPage;
 import ru.appline.framework.pages.StartPage;
-import ru.appline.framework.pages.StrahovaniePage;
-import ru.appline.framework.pages.TarifPage;
+import ru.appline.framework.pages.InsurancePage;
+import ru.appline.framework.pages.TariffPage;
 
 /**
  * @author Arkadiy_Alaverdyan
@@ -22,14 +22,14 @@ public class ManagerPages {
     private StartPage startPage;
 
     /**
-     * Страничка страхование путественников
+     * Страничка страхование путешественников
      */
-    private StrahovaniePage strahovaniePage;
+    private InsurancePage insurancePage;
 
     /**
      * Страничка выбора полиса или тарифа
      */
-    private TarifPage tarifPage;
+    private TariffPage tariffPage;
 
     /**
      * Страничка оформления полиса страхования
@@ -37,7 +37,8 @@ public class ManagerPages {
     private RegistrationFormPage registrationFormPage;
 
     /**
-     * Конструктор специально запривейтили (синглтон)
+     * Конструктор специально был объявлен как private (singleton паттерн)
+     *
      * @see ManagerPages#getManagerPages()
      */
     private ManagerPages() {
@@ -68,27 +69,27 @@ public class ManagerPages {
     }
 
     /**
-     * Ленивая инициализация {@link ru.appline.framework.pages.StrahovaniePage}
+     * Ленивая инициализация {@link InsurancePage}
      *
-     * @return StrahovaniePage
+     * @return InsurancePage
      */
-    public StrahovaniePage getStrahovaniePage() {
-        if (strahovaniePage == null) {
-            strahovaniePage = new StrahovaniePage();
+    public InsurancePage getInsurancePage() {
+        if (insurancePage == null) {
+            insurancePage = new InsurancePage();
         }
-        return strahovaniePage;
+        return insurancePage;
     }
 
     /**
-     * Ленивая инициализация {@link ru.appline.framework.pages.TarifPage}
+     * Ленивая инициализация {@link TariffPage}
      *
-     * @return TarifPage
+     * @return TariffPage
      */
-    public TarifPage getTarifPage() {
-        if (tarifPage == null) {
-            tarifPage = new TarifPage();
+    public TariffPage getTariffPage() {
+        if (tariffPage == null) {
+            tariffPage = new TariffPage();
         }
-        return tarifPage;
+        return tariffPage;
     }
 
     /**

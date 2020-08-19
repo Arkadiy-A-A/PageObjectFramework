@@ -20,7 +20,7 @@ public class StartPage extends BasePage {
     private List<WebElement> menuSubList;
 
     /**
-     * Функция наведения мыши на любую менюшку
+     * Функция наведения мыши на любой пункт меню
      *
      * @param nameBaseMenu - наименование меню
      * @return StartPage - т.е. остаемся на этой странице
@@ -40,18 +40,18 @@ public class StartPage extends BasePage {
      * Функция клика на любое подменю
      *
      * @param nameSubMenu - наименование подменю
-     * @return StrahovaniePage - т.е. переходим на страницу {@link ru.appline.framework.pages.StrahovaniePage}
+     * @return InsurancePage - т.е. переходим на страницу {@link InsurancePage}
      */
-    public StrahovaniePage selectSubMenu(String nameSubMenu) {
+    public InsurancePage selectSubMenu(String nameSubMenu) {
         for (WebElement menuItem : menuSubList) {
             if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {
                 action.moveToElement(menuItem).build().perform();
                 wait.until(ExpectedConditions.visibilityOf(menuItem)).click();
-                return app.getStrahovaniePage();
+                return app.getInsurancePage();
             }
         }
         Assert.fail("Подменю '" + nameSubMenu + "' не было найдено на стартовой странице!");
-        return app.getStrahovaniePage();
+        return app.getInsurancePage();
     }
 
 

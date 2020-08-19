@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Arkadiy_Alaverdyan
  * Класс описывающий страничку страхование путешественников
  */
-public class StrahovaniePage extends BasePage {
+public class InsurancePage extends BasePage {
 
     @FindBy(xpath = "//div[contains(@class,'kit-col_xs_12')]/h1")
     private WebElement pageTitle;
@@ -19,9 +19,9 @@ public class StrahovaniePage extends BasePage {
     /**
      * Проверка открытия страницы, путём проверки title страницы
      *
-     * @return StrahovaniePage - т.е. остаемся на этой странице
+     * @return InsurancePage - т.е. остаемся на этой странице
      */
-    public StrahovaniePage checkOpenStrahovaniePage() {
+    public InsurancePage checkOpenInsurancePage() {
         Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
                 "Страхование путешественников", pageTitle.getText());
         return this;
@@ -29,14 +29,14 @@ public class StrahovaniePage extends BasePage {
 
 
     /**
-     * Кликаем на кнопку "Оформить онлайн"
+     * Клик по кнопке "Оформить онлайн"
      *
-     * @return TarifPage - т.е. переходим на страницу {@link ru.appline.framework.pages.TarifPage}
+     * @return TariffPage - т.е. переходим на страницу {@link TariffPage}
      */
-    public TarifPage clickBtnOformitOnline() {
+    public TariffPage clickBtnCheckoutOnline() {
         scrollToElementJs(checkoutOnlineButton);
         elementToBeClickable(checkoutOnlineButton).click();
-        return app.getTarifPage();
+        return app.getTariffPage();
     }
 
 

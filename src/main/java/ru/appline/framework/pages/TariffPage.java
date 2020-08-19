@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
  * @author Arkadiy_Alaverdyan
  * Класс описывающий страничку выбора полиса
  */
-public class TarifPage extends BasePage {
+public class TariffPage extends BasePage {
 
     @FindBy(xpath = "//h3[text()='Минимальная']")
     private WebElement insuranceCoverageAmount;
@@ -19,9 +19,9 @@ public class TarifPage extends BasePage {
     /**
      * Выбор тарифа страхования
      *
-     * @return TarifPage - т.е. остаемся на этой странице
+     * @return TariffPage - т.е. остаемся на этой странице
      */
-    public TarifPage selectTarifMin() {
+    public TariffPage selectTariffMin() {
         scrollToElementJs(insuranceCoverageAmount);
         insuranceCoverageAmount.click();
         return this;
@@ -32,7 +32,7 @@ public class TarifPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. переходим на страницу {@link ru.appline.framework.pages.RegistrationFormPage}
      */
-    public RegistrationFormPage clickBtnOformit() {
+    public RegistrationFormPage clickBtnArrange() {
         scrollToElementJs(checkoutButton);
         elementToBeClickable(checkoutButton).click();
         return app.getRegistrationFormPage();

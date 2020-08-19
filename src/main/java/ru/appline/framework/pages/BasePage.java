@@ -42,14 +42,14 @@ public class BasePage {
 
     /**
      * Объект явного ожидания
-     * При применении будет ожидать задонного состояния 10 секунд с интервалом в 1 секунду
+     * При применении будет ожидать заданного состояния 10 секунд с интервалом в 1 секунду
      *
      * @see WebDriverWait
      */
     protected WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
 
     /**
-     * Конструктор позволяющий инициализировать все странички и их эелементы помеченные анотацией {@link FindBy}
+     * Конструктор позволяющий инициализировать все странички и их элементы помеченные аннотацией {@link FindBy}
      * Подробнее можно просмотреть в класс {@link org.openqa.selenium.support.PageFactory}
      *
      * @see FindBy
@@ -61,7 +61,7 @@ public class BasePage {
     }
 
     /**
-     * Функция позволяющая скролить до любого элемента с помощью js
+     * Функция позволяющая производить scroll до любого элемента с помощью js
      *
      * @param element - веб-элемент странички
      * @see JavascriptExecutor
@@ -71,9 +71,9 @@ public class BasePage {
     }
 
     /**
-     * Явное ожидание состояния кликабельности элемента
+     * Явное ожидание состояния clickable элемента
      *
-     * @param element - веб-элемент который требует проверки на кликабельность
+     * @param element - веб-элемент который требует проверки clickable
      * @return WebElement - возвращаем тот же веб элемент что был передан в функцию
      * @see WebDriverWait
      * @see org.openqa.selenium.support.ui.FluentWait
@@ -87,7 +87,7 @@ public class BasePage {
     /**
      * Общий метод по заполнения полей ввода
      *
-     * @param field - веб-елемент поле ввода
+     * @param field - веб-элемент поле ввода
      * @param value - значение вводимое в поле
      */
     protected void fillInputField(WebElement field, String value) {
@@ -99,7 +99,7 @@ public class BasePage {
     /**
      * Общий метод по заполнению полей с датой
      *
-     * @param field - веб-елемент поле с датой
+     * @param field - веб-элемент поле с датой
      * @param value - значение вводимое в поле с датой
      */
     protected void fillDateField(WebElement field, String value) {

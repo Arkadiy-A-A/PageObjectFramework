@@ -13,19 +13,22 @@ import static ru.appline.framework.utils.PropConst.*;
 public class DriverManager {
 
     /**
-     * Переменна для хранения объекта веб дравера
+     * Переменна для хранения объекта веб-драйвера
+     *
      * @see WebDriver
      */
     private static WebDriver driver;
 
     /**
-     * Менеджер пропертей
+     * Менеджер properties
+     *
      * @see TestPropManager#getTestPropManager()
      */
     private static TestPropManager props = TestPropManager.getTestPropManager();
 
     /**
-     * Конструктор специально запривейтили (синглтон)
+     * Конструктор специально был объявлен как private (singleton паттерн)
+     *
      * @see DriverManager#getDriver()
      */
     private DriverManager() {
@@ -37,7 +40,7 @@ public class DriverManager {
     private static void initDriver() {
         switch (props.getProperty(TYPE_BROWSER)) {
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", props.getProperty(PATH_GEKO_DRIVER));
+                System.setProperty("webdriver.gecko.driver", props.getProperty(PATH_GECKO_DRIVER));
                 driver = new FirefoxDriver();
                 break;
             default:
@@ -48,6 +51,7 @@ public class DriverManager {
 
     /**
      * Метод ленивой инициализации веб драйвера
+     *
      * @return WebDriver - возвращает веб драйвер
      */
     public static WebDriver getDriver() {
@@ -59,6 +63,7 @@ public class DriverManager {
 
     /**
      * Метод для закрытия сессии драйвера и браузера
+     *
      * @see WebDriver#quit()
      */
     public static void quitDriver() {

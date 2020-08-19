@@ -148,7 +148,7 @@ public class RegistrationFormPage extends BasePage {
 
         }
         element = element.findElement(By.xpath("./..//span"));
-        Assert.assertEquals("Проверка ошибки у поля '" + nameField + "' была непройдена",
+        Assert.assertEquals("Проверка ошибки у поля '" + nameField + "' была не пройдена",
                 errMassage, element.getText());
         return this;
     }
@@ -164,7 +164,7 @@ public class RegistrationFormPage extends BasePage {
     }
 
     /**
-     * Проверка общей ошибки у Алерта
+     * Проверка общей ошибки у Alert
      *
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */

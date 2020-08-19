@@ -13,13 +13,15 @@ import static ru.appline.framework.utils.PropConst.*;
 public class InitManager {
 
     /**
-     * Менеджер пропертей
+     * Менеджер properties
+     *
      * @see TestPropManager#getTestPropManager()
      */
     private static TestPropManager props = TestPropManager.getTestPropManager();
 
     /**
-     * Инициализация фреймворка и запуск браузера со страницей приложения
+     * Инициализация framework и запуск браузера со страницей приложения
+     *
      * @see DriverManager#getDriver()
      * @see TestPropManager#getProperty(String)
      * @see ru.appline.framework.utils.PropConst
@@ -31,7 +33,8 @@ public class InitManager {
     }
 
     /**
-     * Завершения работы фреймворка - гасит драйвер и закрывает сессию с браузером
+     * Завершения работы framework - гасит драйвер и закрывает сессию с браузером
+     *
      * @see DriverManager#quitDriver()
      */
     public static void quitFramework() {
