@@ -1,5 +1,6 @@
 package ru.appline.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,7 @@ public class InsurancePage extends BasePage {
      *
      * @return InsurancePage - т.е. остаемся на этой странице
      */
+    @Step("Проверка открытия страницы InsurancePage")
     public InsurancePage checkOpenInsurancePage() {
         Assert.assertEquals("Заголовок отсутствует/не соответствует требуемому",
                 "Страхование путешественников", pageTitle.getText());
@@ -33,6 +35,7 @@ public class InsurancePage extends BasePage {
      *
      * @return TariffPage - т.е. переходим на страницу {@link TariffPage}
      */
+    @Step("Клик по кнопке 'Оформить онлайн'")
     public TariffPage clickBtnCheckoutOnline() {
         scrollToElementJs(checkoutOnlineButton);
         elementToBeClickable(checkoutOnlineButton).click();

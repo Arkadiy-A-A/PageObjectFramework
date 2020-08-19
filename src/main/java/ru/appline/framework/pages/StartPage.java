@@ -1,5 +1,6 @@
 package ru.appline.framework.pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,7 @@ public class StartPage extends BasePage {
      * @param nameBaseMenu - наименование меню
      * @return StartPage - т.е. остаемся на этой странице
      */
+    @Step("Переход в главное меню {nameBaseMenu}")
     public StartPage selectBaseMenu(String nameBaseMenu) {
         for (WebElement menuItem : menuBaseList) {
             if (menuItem.getText().equalsIgnoreCase(nameBaseMenu)) {
@@ -42,6 +44,7 @@ public class StartPage extends BasePage {
      * @param nameSubMenu - наименование подменю
      * @return InsurancePage - т.е. переходим на страницу {@link InsurancePage}
      */
+    @Step("Выбираем подменю {nameSubMenu}")
     public InsurancePage selectSubMenu(String nameSubMenu) {
         for (WebElement menuItem : menuSubList) {
             if (menuItem.getText().equalsIgnoreCase(nameSubMenu)) {

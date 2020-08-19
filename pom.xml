@@ -22,6 +22,7 @@
         <!-- Dependencies Version -->
         <selenium-java.version>3.141.59</selenium-java.version>
         <junit.version>4.13</junit.version>
+        <allure-junit4.version>2.13.5</allure-junit4.version>
     </properties>
 
     <dependencies>
@@ -40,11 +41,19 @@
             <version>${junit.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>2.13.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
 
+            <!-- Плагин, который отвечает за компиляцию как тестов так и в целом всех Java-классов -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -56,6 +65,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Плагин, который отвечает за запуск тестов и сбор информации о состоянии тестов которые были запущены -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -67,6 +77,27 @@
                         -Xmx1024m
                         -Dfile.encoding=${encoding.type}
                     </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/reports/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.appline.framework.utils.MyAllureListener</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
+
+            <!-- Плагин, который отвечает за формирование сайта Allure отчета -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.10.0</reportVersion>
+                    <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
+                    <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory>
                 </configuration>
             </plugin>
 
