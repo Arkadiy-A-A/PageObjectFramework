@@ -9,9 +9,8 @@ public class FirstTest extends BaseTests {
     public void startTest() {
         app.getStartPage()
                 .selectBaseMenu("Страхование")
-                .selectSubMenu("Страхование путешественников")
-                .checkOpenInsurancePage()
-                .clickBtnCheckoutOnline()
+                .selectSubMenu("Перейти в каталог")
+                .selectTypeInsuranceByName("Страхование для путешественников")
                 .selectTariffMin()
                 .clickBtnArrange()
                 .fillField("Застрахованные - Фамилия", "Privet")

@@ -9,12 +9,12 @@ import ru.appline.framework.pages.TariffPage;
  * @author Arkadiy_Alaverdyan
  * Класс для управления страничками
  */
-public class ManagerPages {
+public class PageManager {
 
     /**
      * Менеджер страничек
      */
-    private static ManagerPages managerPages;
+    private static PageManager pageManager;
 
     /**
      * Стартовая страничка
@@ -39,21 +39,21 @@ public class ManagerPages {
     /**
      * Конструктор специально был объявлен как private (singleton паттерн)
      *
-     * @see ManagerPages#getManagerPages()
+     * @see PageManager#getPageManager()
      */
-    private ManagerPages() {
+    private PageManager() {
     }
 
     /**
-     * Ленивая инициализация ManagerPages
+     * Ленивая инициализация PageManager
      *
-     * @return ManagerPages
+     * @return PageManager
      */
-    public static ManagerPages getManagerPages() {
-        if (managerPages == null) {
-            managerPages = new ManagerPages();
+    public static PageManager getPageManager() {
+        if (pageManager == null) {
+            pageManager = new PageManager();
         }
-        return managerPages;
+        return pageManager;
     }
 
     /**

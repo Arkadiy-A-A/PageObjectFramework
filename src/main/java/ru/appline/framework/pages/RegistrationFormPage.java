@@ -1,6 +1,5 @@
 package ru.appline.framework.pages;
 
-import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -67,7 +66,7 @@ public class RegistrationFormPage extends BasePage {
      * @param value     - значение вводимое в поле
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Заполняем поле '{nameField}' значение '{value}'")
+//    @Step("Заполняем поле '{nameField}' значение '{value}'")
     public RegistrationFormPage fillField(String nameField, String value) {
         WebElement element = null;
         switch (nameField) {
@@ -132,7 +131,7 @@ public class RegistrationFormPage extends BasePage {
      * @param errMassage - ошибка проверяемая которая отображается возле этого поля
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Проверка что у поле '{nameField}' присутствует ошибка с текстом '{errMassage}'")
+//    @Step("Проверка что у поле '{nameField}' присутствует ошибка с текстом '{errMassage}'")
     public RegistrationFormPage checkErrorMessageAtField(String nameField, String errMassage) {
         WebElement element = null;
         switch (nameField) {
@@ -161,7 +160,7 @@ public class RegistrationFormPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Клик по кнопке 'Продолжить'")
+//    @Step("Клик по кнопке 'Продолжить'")
     public RegistrationFormPage clickBtnContinue() {
         elementToBeClickable(btnContinue).click();
         return this;
@@ -172,7 +171,7 @@ public class RegistrationFormPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. остаемся на этой странице
      */
-    @Step("Проверяем что на странице появилась ошибка с текстом '{errMessage}'")
+//    @Step("Проверяем что на странице появилась ошибка с текстом '{errMessage}'")
     public RegistrationFormPage checkErrorMessageAlert(String errMessage) {
         Assert.assertEquals("Проверка ошибки у alert на странице " +
                         "'Оформления страхования путешественников' было не пройдено",

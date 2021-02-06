@@ -1,6 +1,5 @@
 package ru.appline.framework.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,7 +21,7 @@ public class TariffPage extends BasePage {
      *
      * @return TariffPage - т.е. остаемся на этой странице
      */
-    @Step("Выбираем тариф страхования 'Минимальный'")
+//    @Step("Выбираем тариф страхования 'Минимальный'")
     public TariffPage selectTariffMin() {
         scrollToElementJs(insuranceCoverageAmount);
         insuranceCoverageAmount.click();
@@ -34,7 +33,7 @@ public class TariffPage extends BasePage {
      *
      * @return RegistrationFormPage - т.е. переходим на страницу {@link RegistrationFormPage}
      */
-    @Step("Клик по кнопке 'Оформить'")
+//    @Step("Клик по кнопке 'Оформить'")
     public RegistrationFormPage clickBtnArrange() {
         scrollToElementJs(checkoutButton);
         elementToBeClickable(checkoutButton).click();

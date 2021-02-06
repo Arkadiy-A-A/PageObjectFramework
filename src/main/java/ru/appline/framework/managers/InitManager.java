@@ -17,7 +17,7 @@ public class InitManager {
      *
      * @see TestPropManager#getTestPropManager()
      */
-    private static TestPropManager props = TestPropManager.getTestPropManager();
+    private static final TestPropManager props = TestPropManager.getTestPropManager();
 
     /**
      * Инициализация framework и запуск браузера со страницей приложения

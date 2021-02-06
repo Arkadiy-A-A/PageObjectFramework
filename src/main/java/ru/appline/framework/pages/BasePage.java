@@ -1,17 +1,18 @@
 package ru.appline.framework.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.appline.framework.managers.ManagerPages;
+import ru.appline.framework.managers.PageManager;
+import ru.appline.framework.managers.TestPropManager;
 
+import java.util.concurrent.TimeUnit;
 
 import static ru.appline.framework.managers.DriverManager.getDriver;
+import static ru.appline.framework.utils.PropConst.IMPLICITLY_WAIT;
 
 /**
  * @author Arkadiy_Alaverdyan
@@ -22,9 +23,10 @@ public class BasePage {
     /**
      * Менеджер страничек
      *
-     * @see ManagerPages
+     * @see PageManager
      */
-    protected ManagerPages app = ManagerPages.getManagerPages();
+    protected PageManager app = PageManager.getPageManager();
+
 
     /**
      * Объект для имитации реального поведения мыши или клавиатуры
@@ -33,12 +35,14 @@ public class BasePage {
      */
     protected Actions action = new Actions(getDriver());
 
+
     /**
      * Объект для выполнения любого js кода
      *
      * @see JavascriptExecutor
      */
     protected JavascriptExecutor js = (JavascriptExecutor) getDriver();
+
 
     /**
      * Объект явного ожидания
@@ -47,6 +51,15 @@ public class BasePage {
      * @see WebDriverWait
      */
     protected WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
+
+
+    /**
+     * Менеджер properties
+     *
+     * @see TestPropManager#getTestPropManager()
+     */
+    private final TestPropManager props = TestPropManager.getTestPropManager();
+
 
     /**
      * Конструктор позволяющий инициализировать все странички и их элементы помеченные аннотацией {@link FindBy}
@@ -60,6 +73,7 @@ public class BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
+
     /**
      * Функция позволяющая производить scroll до любого элемента с помощью js
      *
@@ -69,6 +83,23 @@ public class BasePage {
     protected void scrollToElementJs(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+
+    /**
+     * Функция позволяющая производить scroll до любого элемента с помощью js со смещение
+     * Смещение задается количеством пикселей по вертикали и горизонтали, т.е. смещение до точки (x, y)
+     *
+     * @param element - веб-элемент странички
+     * @param x       - параметр координаты по горизонтали
+     * @param y       - параметр координаты по вертикали
+     * @see JavascriptExecutor
+     */
+    public void scrollWithOffset(WebElement element, int x, int y) {
+        String code = "window.scroll(" + (element.getLocation().x + x) + ","
+                + (element.getLocation().y + y) + ");";
+        ((JavascriptExecutor) getDriver()).executeScript(code, element, x, y);
+    }
+
 
     /**
      * Явное ожидание состояния clickable элемента
@@ -84,6 +115,7 @@ public class BasePage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
+
     /**
      * Общий метод по заполнения полей ввода
      *
@@ -96,6 +128,7 @@ public class BasePage {
         field.sendKeys(value);
     }
 
+
     /**
      * Общий метод по заполнению полей с датой
      *
@@ -106,4 +139,23 @@ public class BasePage {
         scrollToElementJs(field);
         field.sendKeys(value);
     }
+
+
+    /**
+     * @param by - Объект задающий локатор поиска {@link By}
+     * @return boolean - true если элемент присутствует, false если элемент отсутствует
+     */
+    public boolean isElementExist(By by) {
+        boolean flag = false;
+        try {
+            getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            getDriver().findElement(by);
+            flag = true;
+        } catch (NoSuchElementException ignore) {
+        } finally {
+            getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
+        }
+        return flag;
+    }
+
 }
