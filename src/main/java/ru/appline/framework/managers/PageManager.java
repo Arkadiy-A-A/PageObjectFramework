@@ -1,9 +1,9 @@
 package ru.appline.framework.managers;
 
 import ru.appline.framework.pages.RegistrationFormPage;
-import ru.appline.framework.pages.StartPage;
+import ru.appline.framework.pages.HomePage;
 import ru.appline.framework.pages.InsurancePage;
-import ru.appline.framework.pages.TariffPage;
+import ru.appline.framework.pages.SelectInsuranceServicePage;
 
 /**
  * @author Arkadiy_Alaverdyan
@@ -19,7 +19,7 @@ public class PageManager {
     /**
      * Стартовая страничка
      */
-    private StartPage startPage;
+    private HomePage homePage;
 
     /**
      * Страничка страхование путешественников
@@ -29,7 +29,7 @@ public class PageManager {
     /**
      * Страничка выбора полиса или тарифа
      */
-    private TariffPage tariffPage;
+    private SelectInsuranceServicePage selectInsuranceServicePage;
 
     /**
      * Страничка оформления полиса страхования
@@ -57,15 +57,15 @@ public class PageManager {
     }
 
     /**
-     * Ленивая инициализация {@link ru.appline.framework.pages.StartPage}
+     * Ленивая инициализация {@link HomePage}
      *
      * @return StartPage
      */
-    public StartPage getStartPage() {
-        if (startPage == null) {
-            startPage = new StartPage();
+    public HomePage getHomePage() {
+        if (homePage == null) {
+            homePage = new HomePage();
         }
-        return startPage;
+        return homePage;
     }
 
     /**
@@ -81,15 +81,15 @@ public class PageManager {
     }
 
     /**
-     * Ленивая инициализация {@link TariffPage}
+     * Ленивая инициализация {@link SelectInsuranceServicePage}
      *
      * @return TariffPage
      */
-    public TariffPage getTariffPage() {
-        if (tariffPage == null) {
-            tariffPage = new TariffPage();
+    public SelectInsuranceServicePage getSelectInsuranceServicePage() {
+        if (selectInsuranceServicePage == null) {
+            selectInsuranceServicePage = new SelectInsuranceServicePage();
         }
-        return tariffPage;
+        return selectInsuranceServicePage;
     }
 
     /**

@@ -6,7 +6,7 @@ package ru.appline.framework.utils;
  */
 public class PropConst {
 
-    public static final String APP_URL = "app.url";
+    public static final String BASE_URL = "base.url";
 
     public static final String TYPE_BROWSER = "type.browser";
 
@@ -25,19 +25,5 @@ public class PropConst {
     public static final String IMPLICITLY_WAIT = "implicitly.wait";
 
     public static final String PAGE_LOAD_TIMEOUT = "page.load.timeout";
-
-    public static final String DB_TYPE = "db.type";
-
-    public static final String DB_HOST = "db.host";
-
-    public static final String DB_PORT = "db.port";
-
-    public static final String DB_SCHEMA_NAME = "db.schema.name";
-
-    public static final String DB_USER_LOGIN = "db.user.login";
-
-    public static final String DB_USER_PASSWORD = "db.user.password";
-
-    public static final String DB_TIME_ZONE = "db.time.zone";
 
 }

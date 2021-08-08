@@ -3,14 +3,12 @@ package ru.appline.framework.basetestsclass;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import ru.appline.framework.managers.DriverManager;
 import ru.appline.framework.managers.InitManager;
 import ru.appline.framework.managers.PageManager;
 import ru.appline.framework.managers.TestPropManager;
-import ru.appline.framework.managers.sql.SqlExecutor;
-import ru.appline.framework.managers.sql.SqlRequest;
 
-import static ru.appline.framework.managers.DriverManager.getDriver;
-import static ru.appline.framework.utils.PropConst.APP_URL;
+import static ru.appline.framework.utils.PropConst.BASE_URL;
 
 public class BaseTests {
 
@@ -21,13 +19,11 @@ public class BaseTests {
     protected PageManager app = PageManager.getPageManager();
 
     /**
-     * SqlExecutor - переменная позволяющая делать запросы в БД
+     * Менеджер WebDriver
      *
-     * @see SqlExecutor
-     * @see SqlRequest
-     * @see ru.appline.framework.managers.sql
+     * @see DriverManager#getDriverManager()
      */
-    protected SqlExecutor sqlExec = SqlExecutor.getSqlExecutor();
+    private final DriverManager driverManager = DriverManager.getDriverManager();
 
     @BeforeClass
     public static void beforeAll() {
@@ -36,7 +32,7 @@ public class BaseTests {
 
     @Before
     public void beforeEach() {
-        getDriver().get(TestPropManager.getTestPropManager().getProperty(APP_URL));
+        driverManager.getDriver().get(TestPropManager.getTestPropManager().getProperty(BASE_URL));
     }
 
     @AfterClass

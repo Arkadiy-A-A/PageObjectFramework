@@ -7,12 +7,16 @@ public class FirstTest extends BaseTests {
 
     @Test
     public void startTest() {
-        app.getStartPage()
+        app.getHomePage()
+                .closeCookiesDialog()
                 .selectBaseMenu("Страхование")
-                .selectSubMenu("Перейти в каталог")
-                .selectTypeInsuranceByName("Страхование для путешественников")
+                .selectSubMenu("Путешествия")
+                .checkOpenInsurancePage()
+                .checkoutOnline()
+                .checkOpenSelectInsuranceServicePage()
                 .selectTariffMin()
-                .clickBtnArrange()
+                .checkoutInsuranceOnline()
+                .checkOpenRegistrationFormPage()
                 .fillField("Застрахованные - Фамилия", "Privet")
                 .fillField("Застрахованные - Имя", "Адам")
                 .fillField("Застрахованные - Дата рождения", "12.06.1990")

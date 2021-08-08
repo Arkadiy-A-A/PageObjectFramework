@@ -6,13 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.appline.framework.managers.DriverManager;
 import ru.appline.framework.managers.PageManager;
 import ru.appline.framework.managers.TestPropManager;
-
-import java.util.concurrent.TimeUnit;
-
-import static ru.appline.framework.managers.DriverManager.getDriver;
-import static ru.appline.framework.utils.PropConst.IMPLICITLY_WAIT;
 
 /**
  * @author Arkadiy_Alaverdyan
@@ -21,11 +17,18 @@ import static ru.appline.framework.utils.PropConst.IMPLICITLY_WAIT;
 public class BasePage {
 
     /**
+     * Менеджер WebDriver
+     *
+     * @see DriverManager#getDriverManager()
+     */
+    protected final DriverManager driverManager = DriverManager.getDriverManager();
+
+    /**
      * Менеджер страничек
      *
      * @see PageManager
      */
-    protected PageManager app = PageManager.getPageManager();
+    protected PageManager pageManager = PageManager.getPageManager();
 
 
     /**
@@ -33,7 +36,7 @@ public class BasePage {
      *
      * @see Actions
      */
-    protected Actions action = new Actions(getDriver());
+    protected Actions action = new Actions(driverManager.getDriver());
 
 
     /**
@@ -41,7 +44,7 @@ public class BasePage {
      *
      * @see JavascriptExecutor
      */
-    protected JavascriptExecutor js = (JavascriptExecutor) getDriver();
+    protected JavascriptExecutor js = (JavascriptExecutor) driverManager.getDriver();
 
 
     /**
@@ -50,7 +53,7 @@ public class BasePage {
      *
      * @see WebDriverWait
      */
-    protected WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
+    protected WebDriverWait wait = new WebDriverWait(driverManager.getDriver(), 10, 1000);
 
 
     /**
@@ -70,7 +73,7 @@ public class BasePage {
      * @see PageFactory#initElements(WebDriver, Object)
      */
     public BasePage() {
-        PageFactory.initElements(getDriver(), this);
+        PageFactory.initElements(driverManager.getDriver(), this);
     }
 
 
@@ -80,8 +83,9 @@ public class BasePage {
      * @param element - веб-элемент странички
      * @see JavascriptExecutor
      */
-    protected void scrollToElementJs(WebElement element) {
+    protected WebElement scrollToElementJs(WebElement element) {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
+        return element;
     }
 
 
@@ -94,10 +98,11 @@ public class BasePage {
      * @param y       - параметр координаты по вертикали
      * @see JavascriptExecutor
      */
-    public void scrollWithOffset(WebElement element, int x, int y) {
+    public WebElement scrollWithOffset(WebElement element, int x, int y) {
         String code = "window.scroll(" + (element.getLocation().x + x) + ","
                 + (element.getLocation().y + y) + ");";
-        ((JavascriptExecutor) getDriver()).executeScript(code, element, x, y);
+        ((JavascriptExecutor) driverManager.getDriver()).executeScript(code, element, x, y);
+        return element;
     }
 
 
@@ -111,8 +116,17 @@ public class BasePage {
      * @see org.openqa.selenium.support.ui.Wait
      * @see ExpectedConditions
      */
-    protected WebElement elementToBeClickable(WebElement element) {
+    protected WebElement waitUtilElementToBeClickable(WebElement element) {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    /**
+     * Явное ожидание того что элемент станет видемым
+     *
+     * @param element - веб элемент который мы ожидаем что будет  виден на странице
+     */
+    protected WebElement waitUtilElementToBeVisible(WebElement element) {
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
 
@@ -124,7 +138,7 @@ public class BasePage {
      */
     protected void fillInputField(WebElement field, String value) {
         scrollToElementJs(field);
-        elementToBeClickable(field).click();
+        waitUtilElementToBeClickable(field).click();
         field.sendKeys(value);
     }
 
@@ -138,24 +152,6 @@ public class BasePage {
     protected void fillDateField(WebElement field, String value) {
         scrollToElementJs(field);
         field.sendKeys(value);
-    }
-
-
-    /**
-     * @param by - Объект задающий локатор поиска {@link By}
-     * @return boolean - true если элемент присутствует, false если элемент отсутствует
-     */
-    public boolean isElementExist(By by) {
-        boolean flag = false;
-        try {
-            getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            getDriver().findElement(by);
-            flag = true;
-        } catch (NoSuchElementException ignore) {
-        } finally {
-            getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(props.getProperty(IMPLICITLY_WAIT)), TimeUnit.SECONDS);
-        }
-        return flag;
     }
 
 }

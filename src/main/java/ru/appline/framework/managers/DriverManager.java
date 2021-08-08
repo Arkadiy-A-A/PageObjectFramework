@@ -19,7 +19,7 @@ public class DriverManager {
      *
      * @see WebDriver
      */
-    private static WebDriver driver;
+    private WebDriver driver;
 
 
     /**
@@ -39,22 +39,31 @@ public class DriverManager {
     /**
      * Конструктор специально был объявлен как private (singleton паттерн)
      *
-     * @see DriverManager#getDriver()
-     * @see DriverManager#initDriver()
+     * @see DriverManager#getDriverManager()
      */
     private DriverManager() {
-        initDriver();
     }
 
+    /**
+     * Метод ленивой инициализации DriverManager
+     *
+     * @return DriverManager - возвращает DriverManager
+     */
+    public static DriverManager getDriverManager() {
+        if (INSTANCE == null) {
+            INSTANCE = new DriverManager();
+        }
+        return INSTANCE;
+    }
 
     /**
      * Метод ленивой инициализации веб драйвера
      *
      * @return WebDriver - возвращает веб драйвер
      */
-    public static WebDriver getDriver() {
-        if (INSTANCE == null) {
-            INSTANCE = new DriverManager();
+    public WebDriver getDriver() {
+        if (driver == null) {
+            initDriver();
         }
         return driver;
     }
@@ -65,7 +74,7 @@ public class DriverManager {
      *
      * @see WebDriver#quit()
      */
-    public static void quitDriver() {
+    public void quitDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
